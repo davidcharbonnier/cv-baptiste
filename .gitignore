@@ -21,3 +21,8 @@
 ## Mac OS X metadata files:
 *.DS_Store
 
+## Output files
+*.pdf
+
+## Vscode synctex files
+*.synctex.gz
