@@ -18,7 +18,9 @@
 % CONFIGURATIONS
 %-------------------------------------------------------------------------------
 % A4 paper size by default, use 'letterpaper' for US letter
-\documentclass[11pt, a4paper]{awesome-cv}
+\documentclass[11pt, letterpaper]{awesome-cv}
+
+\usepackage{lastpage}
 
 % Configure page margins with geometry
 \geometry{left=1.4cm, top=.8cm, right=1.4cm, bottom=1.8cm, footskip=.5cm}
@@ -55,16 +57,15 @@
 %\photo[circle,noedge,left]{./profile.png}
 \name{David}{Charbonnier}
 \position{Ingénieur DevOps{\enskip\cdotp\enskip}Expert Kubernetes}
-\address{6, rue Paul Verlaine, Le clos des Minimes A03, 31200, Toulouse, France}
-
-\mobile{(+33) 6-22-89-43-88}
+\address{2-7039 rue Fabre, H2E 2B1, Montréal, QC, Canada}
+\mobile{+1 (438) 530-6581}
 \email{contact@davidcharbonnier.fr}
-% \homepage{www.posquit0.com}
+\homepage{davidcharbonnier.fr}
 \github{davidcharbonnier}
 \linkedin{davidcharbonnier}
 % \gitlab{gitlab-id}
 % \stackoverflow{SO-id}{SO-name}
-\twitter{@dcharbonnierFR}
+\twitter{dcharbonnierFR}
 % \skype{skype-id}
 % \reddit{reddit-id}
 % \medium{madium-id}
@@ -72,8 +73,7 @@
 %% \firstname and \lastname will be used
 % \googlescholar{googlescholar-id}{}
 % \extrainfo{extra informations}
-
-% \quote{``Be the change that you want to see in the world."}
+\quote{``Celui qui veut gravir la montagne ne doit pas se laisser impressionner par sa hauteur..."}
 
 
 %-------------------------------------------------------------------------------
@@ -81,7 +81,7 @@
 
 % Print the header with above personal informations
 % Give optional argument to change alignment(C: center, L: left, R: right)
-\makecvheader
+\makecvheader[C]
 
 % Print the footer with 3 arguments(<left>, <center>, <right>)
 % Leave any of these blank if they are not needed
@@ -89,7 +89,7 @@
   % {\today}
   {}
   {David Charbonnier~~~·~~~Curriculum Vitae}
-  {\thepage}
+  {\thepage ~~/~ \pageref{LastPage}}
 
 
 %-------------------------------------------------------------------------------
