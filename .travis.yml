@@ -13,15 +13,17 @@ services:
 - docker
 
 before_install:
+- mkdir output
 - docker pull thomasweise/texlive
 
 script:
 - docker run -v ${PWD}:/doc/ -ti thomasweise/texlive make cv
+- mv *.pdf output/
 
 deploy:
   provider: s3
   bucket: davidcharbonnier-cv
   regions: ca-central-1
-  glob: *.pdf
+  local_dir: output
   acl: public_read
   edge: true # opt in to dpl v2
