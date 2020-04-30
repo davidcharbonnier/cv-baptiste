@@ -25,4 +25,5 @@ deploy:
   bucket: davidcharbonnier-cv
   regions: ca-central-1
   local_dir: ./output/
+  acl: public_read
   edge: true # opt in to dpl v2
