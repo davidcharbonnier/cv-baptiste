@@ -1,0 +1,27 @@
+# Only build master branch that contains David's CV
+branches:
+  only:
+  - master
+
+# Use sudo to issue docker commands
+sudo: required
+
+services:
+- docker
+
+before_install:
+- mkdir output
+- docker pull thomasweise/texlive
+
+script:
+- docker run -v ${PWD}:/doc/ -ti thomasweise/texlive make cv
+
+after_install:
+- mv *.pdf output/
+
+deploy:
+  provider: s3
+  bucket: davidcharbonnier-cv
+  regions: ca-central-1
+  local_dir: ./output/
+  edge: true # opt in to dpl v2
