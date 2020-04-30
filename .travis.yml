@@ -3,6 +3,9 @@ branches:
   only:
   - master
 
+# Init a minimal build environment as we use docker
+language: minimal
+
 # Use sudo to issue docker commands
 sudo: required
 
