@@ -18,8 +18,6 @@ before_install:
 
 script:
 - docker run -v ${PWD}:/doc/ -ti thomasweise/texlive make cv
-
-after_install:
 - mv *.pdf output/
 
 deploy:
