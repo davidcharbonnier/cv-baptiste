@@ -1,4 +1,4 @@
-.PHONY: all
+.PHONY: all resume cv coverletter
 
 CC = xelatex
 RESUME_DIR = resume
