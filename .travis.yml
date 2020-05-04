@@ -16,7 +16,9 @@ before_install:
 - mkdir output
 - docker pull thomasweise/texlive
 
+# Build doc twice to get \LastPage labels defined
 script:
+- docker run -v ${PWD}:/doc/ -ti thomasweise/texlive make cv
 - docker run -v ${PWD}:/doc/ -ti thomasweise/texlive make cv
 - mv *.pdf output/
 
