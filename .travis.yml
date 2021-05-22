@@ -17,10 +17,8 @@ before_install:
 
 # Build doc twice to get \LastPage labels defined
 script:
-- mkdir /tmp/fonts
-- curl https://github.com/FortAwesome/Font-Awesome/blob/master/otfs/Font%20Awesome%205%20Free-Regular-400.otf?raw=true --output /tmp/fonts/fontawesome.otf
-- docker run -v ${PWD}:/doc/ -v /tmp/fonts/:/usr/share/fonts/external/ -ti thomasweise/texlive make cv resume
-- docker run -v ${PWD}:/doc/ -v /tmp/fonts/:/usr/share/fonts/external/ -ti thomasweise/texlive make cv resume
+- docker run -ti thomasweise/texlive make cv resume
+- docker run -ti thomasweise/texlive make cv resume
 - mv *.pdf output/
 
 deploy:
