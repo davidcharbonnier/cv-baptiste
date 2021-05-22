@@ -2,6 +2,7 @@
 branches:
   only:
   - master
+  - fix-broken-build
 
 os: linux
 dist: xenial
