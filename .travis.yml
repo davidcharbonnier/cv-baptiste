@@ -17,8 +17,8 @@ before_install:
 
 # Build doc twice to get \LastPage labels defined
 script:
-- docker run -ti thomasweise/texlive make cv resume
-- docker run -ti thomasweise/texlive make cv resume
+- docker run -v ${PWD}:/doc/ -ti thomasweise/texlive make cv resume
+- docker run -v ${PWD}:/doc/ -ti thomasweise/texlive make cv resume
 - mv *.pdf output/
 
 deploy:
