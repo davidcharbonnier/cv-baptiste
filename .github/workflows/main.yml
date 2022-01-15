@@ -1,0 +1,32 @@
+name: Compile PDFs
+
+on:
+  push:
+    branches:
+    - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: thomasweise/texlive
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Create output dir
+        run: mkdir output
+
+      - name: Build files 1
+        run: make cv resume
+
+      # Second build required to get \LastPage labels defined
+      - name: Build files 2
+        run: make cv resume
+
+      - uses: shallwefootball/s3-upload-action@master
+        with:
+          aws_key_id: ${{ secrets.AWS_KEY_ID }}
+          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
+          aws_bucket: ${{ secrets.AWS_BUCKET }}
+          source_dir: 'output/'
