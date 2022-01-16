@@ -20,6 +20,9 @@
 % A4 paper size by default, use 'letterpaper' for US letter
 \documentclass[11pt, a4paper]{awesome-cv}
 
+% Use pageslts package to provide total pages number in footer
+\usepackage{pageslts}
+
 % Configure page margins with geometry
 \geometry{left=1.4cm, top=.8cm, right=1.4cm, bottom=1.8cm, footskip=.5cm}
 
@@ -79,6 +82,9 @@
 %-------------------------------------------------------------------------------
 \begin{document}
 
+% Set page numbering format
+\pagenumbering{arabic}
+
 % Print the header with above personal informations
 % Give optional argument to change alignment(C: center, L: left, R: right)
 \makecvheader
@@ -89,7 +95,7 @@
   % {\today}
   {}
   {Baptiste Charbonnier~~~·~~~Curriculum Vitae}
-  {\thepage}
+  {\thepage~~/~ \lastpageref{LastPages}}
 
 
 %-------------------------------------------------------------------------------
