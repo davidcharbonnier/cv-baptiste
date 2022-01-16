@@ -24,8 +24,8 @@ jobs:
       - name: Build files 2
         run: make cv resume
 
-      - name: Debug files
-        run: ls -alhR
+      - name: Move files to destination dir
+        run: mv *.pdf output/
 
       - uses: jakejarvis/s3-sync-action@master
         with:
