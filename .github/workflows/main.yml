@@ -21,8 +21,8 @@ jobs:
         run: make cv resume
 
       # Second build required to get \LastPage labels defined
-      #- name: Build files 2
-      #  run: make cv resume
+      - name: Build files 2
+        run: make cv resume
 
       - name: Move files to destination dir
         run: mv *.pdf output/
