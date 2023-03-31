@@ -8,7 +8,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: thomasweise/texlive
+    container: thomasweise/docker-texlive-full
     permissions:
       contents: write
 
@@ -17,11 +17,11 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Build files 1
-        run: make cv resume
+        run: make all
 
       # Second build required to get \LastPage labels defined
       - name: Build files 2
-        run: make cv resume
+        run: make all
 
       - name: Bump version and push tag
         id: tag_version
@@ -32,11 +32,8 @@ jobs:
 
       - name: Release
         uses: softprops/action-gh-release@v1
-        #if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: |
-            cv.pdf
-            resume.pdf
+          files: "*.pdf"
           draft: false
           prerelease: false
           fail_on_unmatched_files: true
