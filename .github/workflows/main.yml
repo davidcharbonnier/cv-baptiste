@@ -9,6 +9,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container: thomasweise/texlive
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout repo
@@ -27,8 +29,6 @@ jobs:
 
       - name: Release
         uses: softprops/action-gh-release@v1
-        permissions:
-          contents: write
         #if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
