@@ -23,12 +23,12 @@ jobs:
       - name: Build files 2
         run: make cv resume
 
-      - name: 'Setup jq'
-        uses: dcarbone/install-jq-action@v1.0.1
-
-      - name: Version
-        id: version
-        uses: codacy/git-version@2.8.0
+      - name: Bump version and push tag
+        id: tag_version
+        uses: mathieudutour/github-tag-action@v6.1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          default_bump: minor
 
       - name: Release
         uses: softprops/action-gh-release@v1
@@ -37,8 +37,8 @@ jobs:
           files: |
             cv.pdf
             resume.pdf
-          draft: true
-          prerelease: true
+          draft: false
+          prerelease: false
           fail_on_unmatched_files: true
-          tag_name: ${{ steps.version.outputs.version }}
+          tag_name: ${{ steps.tag_version.outputs.new_tag }}
           generate_release_notes: true
