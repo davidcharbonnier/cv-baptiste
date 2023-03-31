@@ -20,8 +20,8 @@
 % A4 paper size by default, use 'letterpaper' for US letter
 \documentclass[11pt, letterpaper]{awesome-cv}
 
-% Use pageslts package to provide total pages number in footer
-\usepackage{pageslts}
+% Use french language for date format
+\usepackage[french]{babel}
 
 % Configure page margins with geometry
 \geometry{left=1.4cm, top=.8cm, right=1.4cm, bottom=1.8cm, footskip=.5cm}
@@ -56,7 +56,7 @@
 %\photo[circle,noedge,left]{./profile.png}
 \name{David}{Charbonnier}
 \position{Ingénieur DevOps{\enskip\cdotp\enskip}Expert Kubernetes}
-\address{12-156 avenue Mozart Est, H2S 1B4, Montréal, QC, Canada}
+\address{2-1261 rue Everett, H2R 1N4, Montréal, QC, Canada}
 \mobile{+1 (438) 530-6581}
 \email{contact@davidcharbonnier.fr}
 \homepage{davidcharbonnier.fr}
@@ -79,9 +79,6 @@
 %-------------------------------------------------------------------------------
 \begin{document}
 
-% Set page numbering format
-\pagenumbering{arabic}
-
 % Print the header with above personal informations
 % Give optional argument to change alignment(C: center, L: left, R: right)
 \makecvheader[C]
@@ -89,10 +86,9 @@
 % Print the footer with 3 arguments(<left>, <center>, <right>)
 % Leave any of these blank if they are not needed
 \makecvfooter
-  % {\today}
-  {}
+  {\today}
   {David Charbonnier~~~·~~~Curriculum Vitae}
-  {\thepage ~~/~ \lastpageref{LastPages}}
+  {\thepage}
 
 
 %-------------------------------------------------------------------------------

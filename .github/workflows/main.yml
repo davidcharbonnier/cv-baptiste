@@ -16,11 +16,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v2
 
-      - name: Build files 1
-        run: make all
-
-      # Second build required to get \LastPage labels defined
-      - name: Build files 2
+      - name: Build files
         run: make all
 
       - name: Bump version and push tag
