@@ -4,37 +4,34 @@ on:
   push:
     branches:
     - master
-  schedule:
-    - cron: '0 0 * * 0'
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: thomasweise/texlive
+    container: thomasweise/docker-texlive-full
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
 
-      - name: Create output dir
-        run: mkdir output
+      - name: Build files
+        run: make all
 
-      - name: Build files 1
-        run: make cv
-
-      # Second build required to get \LastPage labels defined
-      - name: Build files 2
-        run: make cv
-
-      - name: Move files to destination dir
-        run: mv *.pdf output/
-
-      - uses: jakejarvis/s3-sync-action@master
+      - name: Bump version and push tag
+        id: tag_version
+        uses: mathieudutour/github-tag-action@v6.1
         with:
-          args: --acl public-read --follow-symlinks --delete
-        env:
-          AWS_S3_BUCKET: ${{ secrets.AWS_BUCKET }}
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: 'ca-central-1'
-          SOURCE_DIR: 'output'
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          default_bump: minor
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: "*.pdf"
+          draft: false
+          prerelease: false
+          fail_on_unmatched_files: true
+          tag_name: ${{ steps.tag_version.outputs.new_tag }}
+          generate_release_notes: true
